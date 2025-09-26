@@ -1,159 +1,38 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaIndustry, FaCar, FaThermometerHalf, FaCog, FaSearch, FaFilter } from 'react-icons/fa';
+import { publicApi } from '@/apis/api';
 
 const ClientLogos = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedIndustry, setSelectedIndustry] = useState('all');
 
-    const clients = [
-        {
-            id: 1,
-            name: 'Thermal Solutions India',
-            industry: 'HVAC',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Leading HVAC solutions provider',
-            location: 'Mumbai, Maharashtra',
-            partnership: '5+ years',
-            products: ['DGTW Hydrox Brazing', 'HVAC Components'],
-            icon: FaThermometerHalf,
-            color: 'from-blue-500 to-cyan-500'
-        },
-        {
-            id: 2,
-            name: 'EPS Manufacturing Co.',
-            industry: 'EPS',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Premium EPS packaging solutions',
-            location: 'Pune, Maharashtra',
-            partnership: '3+ years',
-            products: ['EPS Machinery Parts', 'Industrial Couplings'],
-            icon: FaCog,
-            color: 'from-green-500 to-emerald-500'
-        },
-        {
-            id: 3,
-            name: 'AutoTech Industries',
-            industry: 'Automotive',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Automotive component manufacturer',
-            location: 'Chennai, Tamil Nadu',
-            partnership: '4+ years',
-            products: ['Automotive Spare Parts', 'Industrial Couplings'],
-            icon: FaCar,
-            color: 'from-orange-500 to-red-500'
-        },
-        {
-            id: 4,
-            name: 'Industrial Solutions Ltd.',
-            industry: 'Industrial',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Heavy industrial equipment manufacturer',
-            location: 'Bangalore, Karnataka',
-            partnership: '6+ years',
-            products: ['Industrial Couplings', 'HVAC Components'],
-            icon: FaIndustry,
-            color: 'from-purple-500 to-pink-500'
-        },
-        {
-            id: 5,
-            name: 'Cooling Systems India',
-            industry: 'HVAC',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Commercial cooling solutions',
-            location: 'Delhi, NCR',
-            partnership: '2+ years',
-            products: ['HVAC Components', 'DGTW Hydrox Brazing'],
-            icon: FaThermometerHalf,
-            color: 'from-blue-500 to-cyan-500'
-        },
-        {
-            id: 6,
-            name: 'Precision Engineering Co.',
-            industry: 'Industrial',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Precision manufacturing specialist',
-            location: 'Ahmedabad, Gujarat',
-            partnership: '3+ years',
-            products: ['Industrial Couplings', 'EPS Machinery Parts'],
-            icon: FaIndustry,
-            color: 'from-purple-500 to-pink-500'
-        },
-        {
-            id: 7,
-            name: 'Packaging Solutions Ltd.',
-            industry: 'EPS',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'EPS packaging and insulation',
-            location: 'Hyderabad, Telangana',
-            partnership: '4+ years',
-            products: ['EPS Machinery Parts', 'Industrial Couplings'],
-            icon: FaCog,
-            color: 'from-green-500 to-emerald-500'
-        },
-        {
-            id: 8,
-            name: 'Vehicle Components Inc.',
-            industry: 'Automotive',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Automotive spare parts supplier',
-            location: 'Kolkata, West Bengal',
-            partnership: '2+ years',
-            products: ['Automotive Spare Parts', 'HVAC Components'],
-            icon: FaCar,
-            color: 'from-orange-500 to-red-500'
-        },
-        {
-            id: 9,
-            name: 'Climate Control Systems',
-            industry: 'HVAC',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Residential and commercial HVAC',
-            location: 'Kochi, Kerala',
-            partnership: '3+ years',
-            products: ['HVAC Components', 'DGTW Hydrox Brazing'],
-            icon: FaThermometerHalf,
-            color: 'from-blue-500 to-cyan-500'
-        },
-        {
-            id: 10,
-            name: 'Heavy Machinery Corp.',
-            industry: 'Industrial',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Heavy machinery and equipment',
-            location: 'Indore, Madhya Pradesh',
-            partnership: '5+ years',
-            products: ['Industrial Couplings', 'Automotive Spare Parts'],
-            icon: FaIndustry,
-            color: 'from-purple-500 to-pink-500'
-        },
-        {
-            id: 11,
-            name: 'EPS Insulation Co.',
-            industry: 'EPS',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'EPS insulation and packaging',
-            location: 'Jaipur, Rajasthan',
-            partnership: '2+ years',
-            products: ['EPS Machinery Parts', 'Industrial Couplings'],
-            icon: FaCog,
-            color: 'from-green-500 to-emerald-500'
-        },
-        {
-            id: 12,
-            name: 'Auto Parts Direct',
-            industry: 'Automotive',
-            logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-            description: 'Direct automotive parts supplier',
-            location: 'Chandigarh, Punjab',
-            partnership: '1+ years',
-            products: ['Automotive Spare Parts', 'HVAC Components'],
-            icon: FaCar,
-            color: 'from-orange-500 to-red-500'
-        }
-    ];
+    const [clients, setClients] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        publicApi.clients()
+            .then((data) => {
+                const mapped = data.clients.map((c, idx) => ({
+                    id: c._id || idx,
+                    name: c.name,
+                    industry: 'Industrial',
+                    logo: c.logoUrl || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=200&q=80',
+                    description: c.website || 'Valued client',
+                    location: '',
+                    partnership: '',
+                    products: [],
+                    icon: FaBuilding,
+                    color: 'from-purple-500 to-pink-500'
+                }));
+                setClients(mapped);
+            })
+            .catch((e) => setError(e.message || 'Failed to load clients'))
+            .finally(() => setLoading(false));
+    }, []);
 
     const industries = [
         { id: 'all', name: 'All Industries', icon: FaBuilding, count: clients.length },
@@ -212,15 +91,15 @@ const ClientLogos = () => {
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setSelectedIndustry(industry.id)}
                                 className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-200 ${selectedIndustry === industry.id
-                                        ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                             >
                                 <industry.icon size={16} />
                                 <span>{industry.name}</span>
                                 <span className={`px-2 py-1 rounded-full text-xs ${selectedIndustry === industry.id
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-gray-200 text-gray-600'
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-gray-200 text-gray-600'
                                     }`}>
                                     {industry.count}
                                 </span>
@@ -239,6 +118,12 @@ const ClientLogos = () => {
 
             {/* Clients Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {loading && (
+                    <div className="col-span-full text-center py-12">Loading clients…</div>
+                )}
+                {error && (
+                    <div className="col-span-full text-center py-12 text-red-600">{error}</div>
+                )}
                 {filteredClients.map((client, index) => (
                     <motion.div
                         key={client.id}
@@ -316,7 +201,7 @@ const ClientLogos = () => {
             )}
 
             {/* Client Statistics */}
-            
+
         </div>
     );
 };

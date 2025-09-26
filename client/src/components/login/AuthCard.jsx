@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '@/context/AuthContext';
 
 const emailRegex = /^(?:[a-zA-Z0-9_'^&\-]+(?:\.[a-zA-Z0-9_'^&\-]+)*)@(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)]\))$/;
 
 const fieldBase = 'block w-full rounded-lg border bg-white/90 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors';
 
 const AuthCard = () => {
+    const { login: loginAction, register: registerAction } = useAuth();
     const [mode, setMode] = useState('login'); // 'login' | 'register'
     const [form, setForm] = useState({
         name: '',
@@ -54,12 +56,19 @@ const AuthCard = () => {
         e.preventDefault();
         if (!validate()) return;
         setSubmitting(true);
-
-        // Simulate API call
-        await new Promise((r) => setTimeout(r, 900));
-
-        setSubmitting(false);
-        alert(mode === 'login' ? 'Logged in!' : 'Registered!');
+        try {
+            if (mode === 'login') {
+                await loginAction(form.email, form.password);
+                alert('Logged in!');
+            } else {
+                await registerAction(form.name, form.email, form.password);
+                alert('Registered!');
+            }
+        } catch (err) {
+            alert(err.message || 'Authentication failed');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (

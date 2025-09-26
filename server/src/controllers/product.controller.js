@@ -2,7 +2,7 @@ import Product from '../models/Product.model.js';
 import { asyncHandler } from '../utils/index.js';
 
 export const listProducts = asyncHandler(async (req, res) => {
-    const { q, category, sortBy } = req.query;
+    const { q, category, sortBy, page = 1, limit = 12 } = req.query;
     const filter = {};
     if (q) {
         filter.$or = [
@@ -14,8 +14,13 @@ export const listProducts = asyncHandler(async (req, res) => {
     const sort = {};
     if (sortBy === 'name') sort.name = 1;
     if (sortBy === 'category') sort.category = 1;
-    const products = await Product.find(filter).sort(sort);
-    res.json({ success: true, count: products.length, products });
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const pageSize = Math.min(Math.max(parseInt(limit, 10) || 12, 1), 100);
+    const [items, total] = await Promise.all([
+        Product.find(filter).sort(sort).skip((pageNum - 1) * pageSize).limit(pageSize),
+        Product.countDocuments(filter)
+    ]);
+    res.json({ success: true, products: items, pagination: { total, page: pageNum, limit: pageSize, pages: Math.ceil(total / pageSize) } });
 });
 
 export const getProduct = asyncHandler(async (req, res) => {

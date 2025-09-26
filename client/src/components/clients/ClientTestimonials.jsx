@@ -3,79 +3,35 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaQuoteLeft, FaQuoteRight, FaStar, FaChevronLeft, FaChevronRight, FaUser, FaBuilding, FaIndustry } from 'react-icons/fa';
+import { publicApi } from '@/apis/api';
 
 const ClientTestimonials = () => {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-    const testimonials = [
-        {
-            id: 1,
-            name: 'Rajesh Kumar',
-            position: 'Production Manager',
-            company: 'Thermal Solutions India',
-            industry: 'HVAC',
-            rating: 5,
-            text: 'Dokania Tech Solutions has been our trusted partner for over 5 years. Their DGTW Hydrox Brazing Solutions have significantly improved our production efficiency and product quality. The technical support is exceptional.',
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        },
-        {
-            id: 2,
-            name: 'Priya Sharma',
-            position: 'Operations Director',
-            company: 'EPS Manufacturing Co.',
-            industry: 'EPS',
-            rating: 5,
-            text: 'The EPS machinery spare parts from Dokania are of exceptional quality. Their precision engineering and timely delivery have helped us maintain 99% uptime. Highly recommended for any EPS manufacturing needs.',
-            image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        },
-        {
-            id: 3,
-            name: 'Amit Patel',
-            position: 'Technical Head',
-            company: 'AutoTech Industries',
-            industry: 'Automotive',
-            rating: 5,
-            text: 'We have been using Dokania\'s automotive spare parts for our production line. The quality is consistently excellent, and their customer service is outstanding. They understand our requirements perfectly.',
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        },
-        {
-            id: 4,
-            name: 'Sunita Reddy',
-            position: 'Plant Manager',
-            company: 'Industrial Solutions Ltd.',
-            industry: 'Industrial',
-            rating: 5,
-            text: 'Dokania\'s industrial couplings have been a game-changer for our operations. The durability and performance are unmatched. Their team provides excellent technical guidance and support.',
-            image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        },
-        {
-            id: 5,
-            name: 'Vikram Singh',
-            position: 'CEO',
-            company: 'Cooling Systems India',
-            industry: 'HVAC',
-            rating: 5,
-            text: 'The HVAC components from Dokania have helped us deliver superior cooling solutions to our clients. Their quality standards and delivery commitments are exemplary. A reliable partner indeed.',
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        },
-        {
-            id: 6,
-            name: 'Meera Joshi',
-            position: 'Quality Manager',
-            company: 'Precision Engineering Co.',
-            industry: 'Industrial',
-            rating: 5,
-            text: 'Working with Dokania has been a pleasure. Their attention to detail and commitment to quality is evident in every product. The technical support team is knowledgeable and responsive.',
-            image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-            companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
-        }
-    ];
+    const [testimonials, setTestimonials] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        publicApi.testimonials()
+            .then((data) => {
+                const mapped = data.testimonials.map((t, idx) => ({
+                    id: t._id || idx,
+                    name: t.author,
+                    position: t.company || 'Client',
+                    company: t.company || '',
+                    industry: 'Industrial',
+                    rating: t.rating || 5,
+                    text: t.content,
+                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+                    companyLogo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=100&q=80',
+                }));
+                setTestimonials(mapped);
+            })
+            .catch((e) => setError(e.message || 'Failed to load testimonials'))
+            .finally(() => setLoading(false));
+    }, []);
 
     const industryIcons = {
         HVAC: FaIndustry,
@@ -116,6 +72,10 @@ const ClientTestimonials = () => {
         setCurrentTestimonial(index);
         setIsAutoPlaying(false);
     };
+
+    if (loading) return <div className="text-center py-12">Loading testimonials…</div>;
+    if (error) return <div className="text-center py-12 text-red-600">{error}</div>;
+    if (!testimonials.length) return <div className="text-center py-12">No testimonials yet.</div>;
 
     const currentTestimonialData = testimonials[currentTestimonial];
     const IndustryIcon = industryIcons[currentTestimonialData.industry];
@@ -241,8 +201,8 @@ const ClientTestimonials = () => {
                         key={index}
                         onClick={() => goToTestimonial(index)}
                         className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentTestimonial
-                                ? 'bg-gradient-to-r from-green-600 to-orange-500 w-8'
-                                : 'bg-gray-300 hover:bg-gray-400'
+                            ? 'bg-gradient-to-r from-green-600 to-orange-500 w-8'
+                            : 'bg-gray-300 hover:bg-gray-400'
                             }`}
                     />
                 ))}
@@ -253,8 +213,8 @@ const ClientTestimonials = () => {
                 <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${isAutoPlaying
-                            ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                 >
                     <div className={`w-3 h-3 rounded-full ${isAutoPlaying ? 'bg-green-500' : 'bg-gray-400'}`} />
@@ -278,8 +238,8 @@ const ClientTestimonials = () => {
                             whileHover={{ y: -5 }}
                             onClick={() => goToTestimonial(index)}
                             className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 cursor-pointer border-2 ${index === currentTestimonial
-                                    ? 'border-green-500'
-                                    : 'border-gray-100 hover:border-gray-200'
+                                ? 'border-green-500'
+                                : 'border-gray-100 hover:border-gray-200'
                                 }`}
                         >
                             {/* Rating */}

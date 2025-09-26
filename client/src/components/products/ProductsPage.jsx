@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSearch, FaFilter, FaCog, FaWrench, FaThermometerHalf, FaCar, FaIndustry, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
@@ -10,75 +10,35 @@ const ProductsPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('name');
 
-    // Product data
-    const products = [
-        {
-            id: 1,
-            name: 'DGTW Hydrox Brazing Solutions',
-            category: 'brazing',
-            slug: 'dgtw-hydrox-brazing-solutions',
-            price: 'Contact for Quote',
-            description: 'High-quality brazing solutions for industrial applications with superior quality and reliability.',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['High Temperature Resistance', 'Corrosion Resistant', 'Industrial Grade'],
-            inStock: true
-        },
-        {
-            id: 2,
-            name: 'EPS Machinery Spare Parts',
-            category: 'eps',
-            slug: 'eps-machinery-spare-parts',
-            price: 'Contact for Quote',
-            description: 'Precision-engineered spare parts for EPS machinery ensuring optimal performance.',
-            image: 'https://images.unsplash.com/photo-1565819443351-4b4b4b4b4b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['Precision Engineering', 'Durable Materials', 'Easy Installation'],
-            inStock: true
-        },
-        {
-            id: 3,
-            name: 'HVAC System Components',
-            category: 'hvac',
-            slug: 'hvac-system-components',
-            price: 'Contact for Quote',
-            description: 'Complete range of HVAC components for residential and commercial applications.',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['Energy Efficient', 'Quiet Operation', 'Long Lasting'],
-            inStock: true
-        },
-        {
-            id: 4,
-            name: 'Automotive Spare Parts',
-            category: 'automobile',
-            slug: 'automotive-spare-parts',
-            price: 'Contact for Quote',
-            description: 'High-quality automotive components for various vehicle types and models.',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['OEM Quality', 'Wide Compatibility', 'Reliable Performance'],
-            inStock: true
-        },
-        {
-            id: 5,
-            name: 'Industrial Couplings',
-            category: 'couplings',
-            slug: 'industrial-couplings',
-            price: 'Contact for Quote',
-            description: 'Heavy-duty couplings for industrial machinery and equipment.',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['Heavy Duty', 'Flexible Design', 'Easy Maintenance'],
-            inStock: true
-        },
-        {
-            id: 6,
-            name: 'Pipe Clamps & Fittings',
-            category: 'fittings',
-            slug: 'pipe-clamps-fittings',
-            price: 'Contact for Quote',
-            description: 'Secure pipe clamps and fittings for various industrial applications.',
-            image: 'https://images.unsplash.com/photo-1565819443351-4b4b4b4b4b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-            features: ['Secure Fastening', 'Corrosion Resistant', 'Multiple Sizes'],
-            inStock: true
-        }
-    ];
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const { list } = require('@/apis/api').productApi;
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const data = await list();
+                const mapped = data.products.map((p) => ({
+                    id: p._id,
+                    name: p.name,
+                    category: p.category,
+                    slug: p.slug,
+                    price: p.priceLabel || 'Contact for Quote',
+                    description: p.description,
+                    image: p.images?.[0] || '/images/placeholder.html',
+                    features: p.features || [],
+                    inStock: p.inStock,
+                }));
+                setProducts(mapped);
+            } catch (err) {
+                setError(err.message || 'Failed to load products');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
 
     const categories = [
         { id: 'all', name: 'All Products', icon: FaSearch, color: 'from-blue-500 to-purple-600' },
@@ -144,8 +104,8 @@ const ProductsPage = () => {
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => setSelectedCategory(category.id)}
                                     className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-200 ${selectedCategory === category.id
-                                            ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     <category.icon size={16} />
@@ -182,6 +142,12 @@ const ProductsPage = () => {
             {/* Products Grid */}
             <section className="pb-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {loading && (
+                        <div className="text-center py-12">Loading products…</div>
+                    )}
+                    {error && (
+                        <div className="text-center py-12 text-red-600">{error}</div>
+                    )}
                     <div className="mb-8">
                         <p className="text-gray-600">
                             Showing {filteredProducts.length} of {products.length} products

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUser, FaEnvelope, FaPhone, FaBuilding, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 import { FaMessage } from "react-icons/fa6";
+import { contactApi } from '@/apis/api';
 
 
 const ContactForm = ({ onSuccess }) => {
@@ -86,11 +87,14 @@ const ContactForm = ({ onSuccess }) => {
         setIsSubmitting(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            console.log('Form submitted:', formData);
-
+            await contactApi.send({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                subject: formData.subject,
+                message: formData.message,
+                source: formData.inquiryType === 'sales' ? 'quote' : 'contact',
+            });
             // Reset form
             setFormData({
                 name: '',
@@ -101,10 +105,9 @@ const ContactForm = ({ onSuccess }) => {
                 message: '',
                 inquiryType: 'general'
             });
-
             onSuccess();
         } catch (error) {
-            console.error('Error submitting form:', error);
+            setErrors({ submit: error.message || 'Failed to send message' });
         } finally {
             setIsSubmitting(false);
         }
@@ -297,6 +300,9 @@ const ContactForm = ({ onSuccess }) => {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 className="pt-4"
             >
+                {errors.submit && (
+                    <div className="text-red-600 text-sm mb-3">{errors.submit}</div>
+                )}
                 <motion.button
                     type="submit"
                     disabled={isSubmitting}
