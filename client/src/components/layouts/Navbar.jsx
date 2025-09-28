@@ -20,18 +20,7 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', href: '/home' },
-        {
-            name: 'Products',
-            href: '/products',
-            dropdown: [
-                { name: 'All Products', href: '/products' },
-                { name: 'DGTW Hydrox Brazing Solutions', href: '/products/dgtw-hydrox-brazing-solutions' },
-                { name: 'EPS Machinery Parts', href: '/products/eps-machinery-spare-parts' },
-                { name: 'HVAC Solutions', href: '/products/hvac-system-components' },
-                { name: 'Automobile Parts', href: '/products/automotive-spare-parts' },
-                { name: 'Industrial Couplings', href: '/products/industrial-couplings' }
-            ]
-        },
+        { name: 'Products', href: '/products' },
         { name: 'Clients', href: '/clients' },
         { name: 'About', href: '/about' },
         { name: 'Contact Us', href: '/contact' }
@@ -134,6 +123,7 @@ const Navbar = () => {
                             <FaPhone className="text-green-600" />
                             <span>+91 9205960101</span>
                         </motion.div>
+                        <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer"> 
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -141,6 +131,7 @@ const Navbar = () => {
                         >
                             Get Quote
                         </motion.button>
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -214,14 +205,16 @@ const Navbar = () => {
                                         <FaEnvelope className="text-green-600" />
                                         <span>info@dokaniatech.com</span>
                                     </motion.div>
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={closeMobileMenu}
-                                        className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
-                                    >
-                                        Get Quote
-                                    </motion.button>
+                                    <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onClick={closeMobileMenu}
+                                            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                                        >
+                                            Get Quote
+                                        </motion.button>
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>

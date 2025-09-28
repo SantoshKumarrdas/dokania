@@ -223,43 +223,6 @@ const ProductDetail = ({ product }) => {
                     </motion.div>
                 </div>
 
-                {/* Related Products */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-16"
-                >
-                    <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Products</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* This would be populated with related products */}
-                        <div className="bg-white rounded-lg shadow-md p-4">
-                            <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Related Product 1</h3>
-                            <p className="text-sm text-gray-600 mb-2">Product description</p>
-                            <p className="font-semibold text-green-600">Contact for Quote</p>
-                        </div>
-                        <div className="bg-white rounded-lg shadow-md p-4">
-                            <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Related Product 2</h3>
-                            <p className="text-sm text-gray-600 mb-2">Product description</p>
-                            <p className="font-semibold text-green-600">Contact for Quote</p>
-                        </div>
-                        <div className="bg-white rounded-lg shadow-md p-4">
-                            <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Related Product 3</h3>
-                            <p className="text-sm text-gray-600 mb-2">Product description</p>
-                            <p className="font-semibold text-green-600">Contact for Quote</p>
-                        </div>
-                        <div className="bg-white rounded-lg shadow-md p-4">
-                            <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Related Product 4</h3>
-                            <p className="text-sm text-gray-600 mb-2">Product description</p>
-                            <p className="font-semibold text-green-600">Contact for Quote</p>
-                        </div>
-                    </div>
-                </motion.div>
-
                 {/* Contact CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

@@ -40,16 +40,6 @@ const ProductsPage = () => {
         fetchProducts();
     }, []);
 
-    const categories = [
-        { id: 'all', name: 'All Products', icon: FaSearch, color: 'from-blue-500 to-purple-600' },
-        { id: 'brazing', name: 'DGTW Hydrox Brazing', icon: FaCog, color: 'from-blue-500 to-cyan-600' },
-        { id: 'eps', name: 'EPS Machinery Parts', icon: FaWrench, color: 'from-green-500 to-emerald-600' },
-        { id: 'hvac', name: 'HVAC Solutions', icon: FaThermometerHalf, color: 'from-orange-500 to-red-600' },
-        { id: 'automobile', name: 'Automobile Parts', icon: FaCar, color: 'from-purple-500 to-pink-600' },
-        { id: 'couplings', name: 'Industrial Couplings', icon: FaIndustry, color: 'from-indigo-500 to-purple-600' },
-        { id: 'fittings', name: 'Pipe Fittings', icon: FaWrench, color: 'from-teal-500 to-cyan-600' }
-    ];
-
     // Filter and sort products
     const filteredProducts = products
         .filter(product => {
@@ -95,24 +85,7 @@ const ProductsPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
 
-                        {/* Category Filter */}
-                        <div className="flex flex-wrap gap-2">
-                            {categories.map((category) => (
-                                <motion.button
-                                    key={category.id}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={() => setSelectedCategory(category.id)}
-                                    className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-200 ${selectedCategory === category.id
-                                        ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                        }`}
-                                >
-                                    <category.icon size={16} />
-                                    <span>{category.name}</span>
-                                </motion.button>
-                            ))}
-                        </div>
+                        
 
                         {/* Search Bar */}
                         <div className="relative flex-1 min-w-[250px]">
@@ -181,7 +154,7 @@ const ProductsPage = () => {
                                         />
                                         <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
-                                                {categories.find(cat => cat.id === product.category)?.name}
+                                                {product?.name}
                                             </span>
                                         </div>
                                         {product.inStock && (
@@ -259,20 +232,24 @@ const ProductsPage = () => {
                         We offer custom solutions and can help you find the right products for your specific needs.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <motion.button
+                        <Link href="/contact">
+                        <motion.button  
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="px-8 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                         >
                             Contact Us
                         </motion.button>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
-                        >
-                            Request Quote
-                        </motion.button>
+                        </Link>
+                        <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
+                            >
+                                Request Quote
+                            </motion.button>
+                        </a>
                     </div>
                 </div>
             </section>
