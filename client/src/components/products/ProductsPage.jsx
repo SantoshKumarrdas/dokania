@@ -9,6 +9,7 @@ const ProductsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('name');
+    const [stockFilter, setStockFilter] = useState('all'); // all | in | out
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -46,7 +47,8 @@ const ProductsPage = () => {
             const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 product.description.toLowerCase().includes(searchTerm.toLowerCase());
             const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-            return matchesSearch && matchesCategory;
+            const matchesStock = stockFilter === 'all' ? true : stockFilter === 'in' ? product.inStock : !product.inStock;
+            return matchesSearch && matchesCategory && matchesStock;
         })
         .sort((a, b) => {
             switch (sortBy) {
@@ -85,7 +87,7 @@ const ProductsPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
 
-                        
+
 
                         {/* Search Bar */}
                         <div className="relative flex-1 min-w-[250px]">
@@ -107,6 +109,17 @@ const ProductsPage = () => {
                         >
                             <option value="name">Sort by Name</option>
                             <option value="category">Sort by Category</option>
+                        </select>
+
+                        {/* Stock Filter */}
+                        <select
+                            value={stockFilter}
+                            onChange={(e) => setStockFilter(e.target.value)}
+                            className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        >
+                            <option value="all">All Stock</option>
+                            <option value="in">In Stock</option>
+                            <option value="out">Out of Stock</option>
                         </select>
                     </div>
                 </div>
@@ -157,13 +170,11 @@ const ProductsPage = () => {
                                                 {product?.name}
                                             </span>
                                         </div>
-                                        {product.inStock && (
-                                            <div className="absolute top-4 left-4">
-                                                <span className="px-3 py-1 bg-green-500 text-white text-xs font-medium rounded-full">
-                                                    In Stock
-                                                </span>
-                                            </div>
-                                        )}
+                                        <div className="absolute top-4 left-4">
+                                            <span className={`px-3 py-1 text-white text-xs font-medium rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}>
+                                                {product.inStock ? 'In Stock' : 'Out of Stock'}
+                                            </span>
+                                        </div>
                                     </div>
 
                                     {/* Product Content */}
@@ -233,13 +244,13 @@ const ProductsPage = () => {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/contact">
-                        <motion.button  
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
-                        >
-                            Contact Us
-                        </motion.button>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                            >
+                                Contact Us
+                            </motion.button>
                         </Link>
                         <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
                             <motion.button

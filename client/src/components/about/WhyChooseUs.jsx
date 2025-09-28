@@ -268,40 +268,6 @@ const WhyChooseUs = () => {
                     ))}
                 </div>
             </div>
-
-            {/* Call to Action */}
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-r from-green-600 to-orange-500 rounded-2xl p-8 text-center text-white"
-            >
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                    Ready to Experience the Difference?
-                </h3>
-                <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-                    Join our growing list of satisfied clients and discover why leading companies choose us as their trusted partner.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <motion.a
-                        href="/contact"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
-                    >
-                        Get Started Today
-                    </motion.a>
-                    <motion.a
-                        href="/products"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
-                    >
-                        Explore Our Solutions
-                    </motion.a>
-                </div>
-            </motion.div>
         </div>
     );
 };

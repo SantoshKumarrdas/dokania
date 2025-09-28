@@ -14,6 +14,11 @@ MONGO_URI=mongodb://127.0.0.1:27017/dokania
 JWT_SECRET=change_me_in_production
 JWT_EXPIRES_IN=7d
 CLIENT_ORIGIN=http://localhost:3000
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 2. Install dependencies:
@@ -96,6 +101,10 @@ API Overview (v1)
 - Public (`/api/v1/public`)
   - GET `/clients` list clients
   - GET `/testimonials` list testimonials
+
+- Upload (`/api/v1/upload`) [admin]
+  - POST `/product` – multipart field `image` ⇒ `{ success, url, publicId }`
+  - POST `/client` – multipart field `image` ⇒ `{ success, url, publicId }`
 
 Notes
 -----

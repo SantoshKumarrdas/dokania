@@ -202,13 +202,15 @@ const HeroSection = () => {
                                     Explore Products
                                 </motion.button>
                             </Link>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200 backdrop-blur-sm text-sm md:text-base"
-                            >
-                                Get Quote
-                            </motion.button>
+                            <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200 backdrop-blur-sm text-sm md:text-base"
+                                >
+                                    Get Quote
+                                </motion.button>
+                            </a>
                         </motion.div>
 
                     </motion.div>

@@ -194,6 +194,7 @@ const AboutSection = () => {
                             Join hundreds of satisfied customers who trust Dokania Tech Solutions for their industrial needs.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="/contact">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -201,6 +202,8 @@ const AboutSection = () => {
                             >
                                 Get Started Today
                             </motion.button>
+                            </a>
+                            <a href="/about">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -208,6 +211,7 @@ const AboutSection = () => {
                             >
                                 Learn More
                             </motion.button>
+                            </a>
                         </div>
                     </div>
                 </motion.div>

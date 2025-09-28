@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const emailRegex = /^(?:[a-zA-Z0-9_'^&\-]+(?:\.[a-zA-Z0-9_'^&\-]+)*)@(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)]\))$/;
 
@@ -10,6 +11,7 @@ const fieldBase = 'block w-full rounded-lg border bg-white/90 placeholder-gray-4
 
 const AuthCard = () => {
     const { login: loginAction, register: registerAction } = useAuth();
+    const router = useRouter();
     const [mode, setMode] = useState('login'); // 'login' | 'register'
     const [form, setForm] = useState({
         name: '',
@@ -59,11 +61,10 @@ const AuthCard = () => {
         try {
             if (mode === 'login') {
                 await loginAction(form.email, form.password);
-                alert('Logged in!');
             } else {
                 await registerAction(form.name, form.email, form.password);
-                alert('Registered!');
             }
+            router.push('/');
         } catch (err) {
             alert(err.message || 'Authentication failed');
         } finally {

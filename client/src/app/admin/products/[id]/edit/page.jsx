@@ -3,14 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import { productApi } from '@/apis/api';
 import { useParams, useRouter } from 'next/navigation';
+import ImageUploader from '@/components/common/ImageUploader';
 
 export default function EditProductPage() {
     const params = useParams();
     const router = useRouter();
-    const [form, setForm] = useState({ name: '', slug: '', category: '', priceLabel: 'Contact for Quote', description: '', longDescription: '', images: '' });
+    const [form, setForm] = useState({ name: '', slug: '', category: '', priceLabel: 'Contact for Quote', description: '', longDescription: '', images: '', inStock: true });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState('');
+    const [imageUrls, setImageUrls] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -27,7 +29,9 @@ export default function EditProductPage() {
                     description: p.description || '',
                     longDescription: p.longDescription || '',
                     images: (p.images || []).join(', '),
+                    inStock: !!p.inStock,
                 });
+                setImageUrls(p.images || []);
             } catch (e) {
                 setError(e.message || 'Failed to load');
             } finally {
@@ -44,7 +48,10 @@ export default function EditProductPage() {
         try {
             const payload = {
                 ...form,
-                images: form.images ? form.images.split(',').map(s => s.trim()) : [],
+                images: Array.from(new Set([
+                    ...imageUrls,
+                    ...(form.images ? form.images.split(',').map(s => s.trim()) : [])
+                ])),
             };
             await productApi.update(params.id, payload);
             alert('Updated');
@@ -68,7 +75,21 @@ export default function EditProductPage() {
                 <input name="priceLabel" value={form.priceLabel} onChange={onChange} placeholder="Price Label" className="w-full border p-2 rounded" />
                 <textarea name="description" value={form.description} onChange={onChange} placeholder="Short description" className="w-full border p-2 rounded" required />
                 <textarea name="longDescription" value={form.longDescription} onChange={onChange} placeholder="Long description" className="w-full border p-2 rounded" />
-                <input name="images" value={form.images} onChange={onChange} placeholder="Images (comma separated URLs)" className="w-full border p-2 rounded" />
+                <select name="inStock" value={form.inStock ? 'true' : 'false'} onChange={(e) => setForm({ ...form, inStock: e.target.value === 'true' })} className="w-full border p-2 rounded">
+                    <option value="true">In Stock</option>
+                    <option value="false">Out of Stock</option>
+                </select>
+                <div className="space-y-2">
+                    <ImageUploader scope="product" onUploaded={(url) => setImageUrls(prev => [...prev, url])} />
+                    {imageUrls.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                            {imageUrls.map((u, i) => (
+                                <img key={i} src={u} alt="uploaded" className="w-16 h-16 object-cover rounded" />
+                            ))}
+                        </div>
+                    )}
+                    <input name="images" value={form.images} onChange={onChange} placeholder="Additional image URLs (comma separated)" className="w-full border p-2 rounded" />
+                </div>
                 <button disabled={saving} className="px-4 py-2 bg-green-600 text-white rounded">{saving ? 'Saving…' : 'Save'}</button>
             </form>
         </div>

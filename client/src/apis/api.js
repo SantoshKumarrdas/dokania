@@ -57,4 +57,20 @@ export const publicApi = {
     deleteTestimonial: (id) => api.delete(`/public/testimonials/${id}`).then(r => r.data),
 };
 
+// Uploads
+export const uploadApi = {
+    productImage: (file, base) => {
+        const form = new FormData();
+        form.append('image', file);
+        if (base) form.append('base', base);
+        return api.post('/upload/product', form, { headers: { 'Content-Type': 'multipart/form-data' } }).then(r => r.data);
+    },
+    clientImage: (file, base) => {
+        const form = new FormData();
+        form.append('image', file);
+        if (base) form.append('base', base);
+        return api.post('/upload/client', form, { headers: { 'Content-Type': 'multipart/form-data' } }).then(r => r.data);
+    },
+};
+
 

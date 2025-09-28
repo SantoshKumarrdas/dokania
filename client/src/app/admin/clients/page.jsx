@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { publicApi } from '@/apis/api';
+import ImageUploader from '@/components/common/ImageUploader';
 
 export default function AdminClientsPage() {
     const [items, setItems] = useState([]);
@@ -49,10 +50,11 @@ export default function AdminClientsPage() {
             {loading && <div>Loading…</div>}
             {error && <div className="text-red-600">{error}</div>}
 
-            <div className="mb-4 space-x-2">
+            <div className="mb-4 space-x-2 space-y-2 bg-gray-100 p-4 rounded-lg">
                 <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" className="border p-2 rounded" />
-                <input value={logoUrl} onChange={e => setLogoUrl(e.target.value)} placeholder="Logo URL" className="border p-2 rounded" />
                 <input value={website} onChange={e => setWebsite(e.target.value)} placeholder="Website" className="border p-2 rounded" />
+                {logoUrl && <img src={logoUrl} alt="logo" className="w-20 h-20 object-cover rounded" />}
+                <ImageUploader scope="client" buttonLabel="Upload Logo" onUploaded={(url) => setLogoUrl(url)} />
                 <button onClick={create} className="px-3 py-2 bg-green-600 text-white rounded">Add</button>
             </div>
 

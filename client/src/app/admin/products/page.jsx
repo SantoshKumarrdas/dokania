@@ -10,6 +10,7 @@ export default function AdminProductsPage() {
     const [error, setError] = useState('');
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const [stockFilter, setStockFilter] = useState('all'); // all | in | out
 
     const load = async (p = 1) => {
         setLoading(true);
@@ -28,6 +29,15 @@ export default function AdminProductsPage() {
 
     useEffect(() => { load(1); }, []);
 
+    const toggleStock = async (product) => {
+        try {
+            await productApi.update(product._id, { inStock: !product.inStock });
+            await load(page);
+        } catch (e) {
+            alert(e.message || 'Failed to update stock');
+        }
+    };
+
     const onDelete = async (id) => {
         if (!confirm('Delete this product?')) return;
         try {
@@ -43,7 +53,14 @@ export default function AdminProductsPage() {
         <div>
             <div className="flex items-center justify-between mb-4">
                 <h1 className="text-2xl font-bold">Products</h1>
-                <Link href="/admin/products/create" className="px-3 py-2 bg-green-600 text-white rounded">New Product</Link>
+                <div className="flex items-center gap-2">
+                    <select value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} className="px-3 py-2 border rounded">
+                        <option value="all">All</option>
+                        <option value="in">In Stock</option>
+                        <option value="out">Out of Stock</option>
+                    </select>
+                    <Link href="/admin/products/create" className="px-3 py-2 bg-green-600 text-white rounded">New Product</Link>
+                </div>
             </div>
             {loading && <div>Loading…</div>}
             {error && <div className="text-red-600">{error}</div>}
@@ -60,18 +77,27 @@ export default function AdminProductsPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {items.map((p) => (
-                                <tr key={p._id} className="border-t">
-                                    <td className="p-2">{p.name}</td>
-                                    <td className="p-2">{p.category}</td>
-                                    <td className="p-2">{p.priceLabel || 'Contact for Quote'}</td>
-                                    <td className="p-2">{p.inStock ? 'In Stock' : 'Out of Stock'}</td>
-                                    <td className="p-2 space-x-2">
-                                        <Link href={`/admin/products/${p._id}/edit`} className="px-2 py-1 border rounded">Edit</Link>
-                                        <button onClick={() => onDelete(p._id)} className="px-2 py-1 border rounded text-red-600">Delete</button>
-                                    </td>
-                                </tr>
-                            ))}
+                            {items
+                                .filter((p) => stockFilter === 'all' ? true : stockFilter === 'in' ? p.inStock : !p.inStock)
+                                .map((p) => (
+                                    <tr key={p._id} className="border-t">
+                                        <td className="p-2">{p.name}</td>
+                                        <td className="p-2">{p.category}</td>
+                                        <td className="p-2">{p.priceLabel || 'Contact for Quote'}</td>
+                                        <td className="p-2">
+                                            <span className={`px-2 py-1 rounded text-xs ${p.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                                                {p.inStock ? 'In Stock' : 'Out of Stock'}
+                                            </span>
+                                        </td>
+                                        <td className="p-2 space-x-2">
+                                            <Link href={`/admin/products/${p._id}/edit`} className="px-2 py-1 border rounded">Edit</Link>
+                                            <button onClick={() => toggleStock(p)} className="px-2 py-1 border rounded">
+                                                {p.inStock ? 'Mark Out of Stock' : 'Mark In Stock'}
+                                            </button>
+                                            <button onClick={() => onDelete(p._id)} className="px-2 py-1 border rounded text-red-600">Delete</button>
+                                        </td>
+                                    </tr>
+                                ))}
                         </tbody>
                     </table>
                 </div>

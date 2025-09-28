@@ -1,100 +1,44 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCog, FaWrench, FaThermometerHalf, FaCar, FaArrowRight, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 
 const ProductsSection = () => {
     const [activeCategory, setActiveCategory] = useState('all');
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
-    const productCategories = [
-        {
-            id: 'all',
-            name: 'All Products',
-            icon: FaSearch,
-            color: 'from-blue-500 to-purple-600'
-        },
-        {
-            id: 'brazing',
-            name: 'DGTW Hydrox Brazing',
-            icon: FaCog,
-            color: 'from-blue-500 to-cyan-600',
-            description: 'High-quality brazing solutions for industrial applications'
-        },
-        {
-            id: 'eps',
-            name: 'EPS Machinery Parts',
-            icon: FaWrench,
-            color: 'from-green-500 to-emerald-600',
-            description: 'Precision-engineered spare parts for EPS machinery'
-        },
-        {
-            id: 'hvac',
-            name: 'HVAC Solutions',
-            icon: FaThermometerHalf,
-            color: 'from-orange-500 to-red-600',
-            description: 'Complete HVAC system components and solutions'
-        },
-        {
-            id: 'automobile',
-            name: 'Automobile Parts',
-            icon: FaCar,
-            color: 'from-purple-500 to-pink-600',
-            description: 'Reliable automotive components and spare parts'
-        }
-    ];
+    // Fetch products dynamically (same mapping as Products page)
+    useEffect(() => {
+        const { list } = require('@/apis/api').productApi;
+        const fetchProducts = async () => {
+            try {
+                const data = await list();
+                const mapped = data.products.map((p) => ({
+                    id: p._id,
+                    name: p.name,
+                    category: p.category,
+                    slug: p.slug,
+                    price: p.priceLabel || 'Contact for Quote',
+                    description: p.description,
+                    image: p.images?.[0] || '/images/placeholder.html',
+                    features: p.features || [],
+                    inStock: p.inStock,
+                }));
+                setProducts(mapped);
+            } catch (err) {
+                setError(err.message || 'Failed to load products');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
 
-    const products = [
-        {
-            id: 1,
-            name: 'DGTW Hydrox Brazing Solutions',
-            category: 'brazing',
-            image: '/api/placeholder/400/300',
-            description: 'Premium brazing solutions for industrial applications with superior quality and reliability.',
-            features: ['High Temperature Resistance', 'Corrosion Resistant', 'Industrial Grade']
-        },
-        {
-            id: 2,
-            name: 'EPS Machinery Spare Parts',
-            category: 'eps',
-            image: '/api/placeholder/400/300',
-            description: 'Precision-engineered spare parts for EPS machinery ensuring optimal performance.',
-            features: ['Precision Engineering', 'Durable Materials', 'Easy Installation']
-        },
-        {
-            id: 3,
-            name: 'HVAC System Components',
-            category: 'hvac',
-            image: '/api/placeholder/400/300',
-            description: 'Complete range of HVAC components for residential and commercial applications.',
-            features: ['Energy Efficient', 'Quiet Operation', 'Long Lasting']
-        },
-        {
-            id: 4,
-            name: 'Automotive Spare Parts',
-            category: 'automobile',
-            image: '/api/placeholder/400/300',
-            description: 'High-quality automotive components for various vehicle types and models.',
-            features: ['OEM Quality', 'Wide Compatibility', 'Reliable Performance']
-        },
-        {
-            id: 5,
-            name: 'Industrial Couplings',
-            category: 'brazing',
-            image: '/api/placeholder/400/300',
-            description: 'Heavy-duty couplings for industrial machinery and equipment.',
-            features: ['Heavy Duty', 'Flexible Design', 'Easy Maintenance']
-        },
-        {
-            id: 6,
-            name: 'Pipe Clamps & Fittings',
-            category: 'eps',
-            image: '/api/placeholder/400/300',
-            description: 'Secure pipe clamps and fittings for various industrial applications.',
-            features: ['Secure Fastening', 'Corrosion Resistant', 'Multiple Sizes']
-        }
-    ];
+    // products are fetched dynamically above
 
     const filteredProducts = activeCategory === 'all'
         ? products
@@ -118,31 +62,6 @@ const ProductsSection = () => {
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                         Discover our comprehensive range of high-quality products designed to meet the diverse needs of industries across India.
                     </p>
-                </motion.div>
-
-                {/* Category Filter */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-4 mb-12"
-                >
-                    {productCategories.map((category) => (
-                        <motion.button
-                            key={category.id}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setActiveCategory(category.id)}
-                            className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-200 ${activeCategory === category.id
-                                ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                        >
-                            <category.icon size={18} />
-                            <span>{category.name}</span>
-                        </motion.button>
-                    ))}
                 </motion.div>
 
                 {/* Products Grid */}
@@ -169,7 +88,7 @@ const ProductsSection = () => {
                                     </div>
                                     <div className="absolute top-4 right-4">
                                         <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
-                                            {productCategories.find(cat => cat.id === product.category)?.name}
+                                            {product?.name}
                                         </span>
                                     </div>
                                 </div>
@@ -218,13 +137,15 @@ const ProductsSection = () => {
                     viewport={{ once: true }}
                     className="text-center mt-12"
                 >
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
-                    >
-                        View All Products
-                    </motion.button>
+                    <Link href="/products">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                        >
+                            View All Products
+                        </motion.button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

@@ -3,11 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaChevronDown, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa6';
+import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const { user, isAuthenticated, logout } = useAuth();
+    const router = useRouter();
 
     // Handle scroll effect
     useEffect(() => {
@@ -116,22 +122,38 @@ const Navbar = () => {
 
                     {/* Contact Info & CTA */}
                     <div className="hidden lg:flex items-center space-x-4">
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            className="flex items-center space-x-2 text-sm text-gray-600"
-                        >
-                            <FaPhone className="text-green-600" />
-                            <span>+91 9205960101</span>
-                        </motion.div>
-                        <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer"> 
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
-                        >
-                            Get Quote
-                        </motion.button>
+                        <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer">
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                className="flex items-center space-x-1 text-sm text-gray-600"
+                            >
+                                <FaWhatsapp size={17} className="text-green-600" />
+                                <span>+91 9873776859</span>
+                            </motion.div>
                         </a>
+                        {isAuthenticated ? (
+                            <div className="flex items-center gap-3">
+                                <span className="text-sm text-gray-700">Hi, {user?.name || 'User'}</span>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="border px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
+                                    onClick={() => { logout(); router.push('/'); }}
+                                >
+                                    Logout
+                                </motion.button>
+                            </div>
+                        ) : (
+                            <Link href="/login" className='cursor-pointer'>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                                >
+                                    Login / Register
+                                </motion.button>
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -191,13 +213,15 @@ const Navbar = () => {
 
                                 {/* Mobile Contact Info */}
                                 <div className="pt-4 border-t border-gray-200 space-y-3">
-                                    <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        className="flex items-center space-x-2 text-gray-600"
-                                    >
-                                        <FaPhone className="text-green-600" />
-                                        <span>+91 9205960101</span>
-                                    </motion.div>
+                                    <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer">
+                                        <motion.div
+                                            whileHover={{ scale: 1.02 }}
+                                            className="flex items-center space-x-1 text-gray-600"
+                                        >
+                                            <FaWhatsapp size={17} className="text-green-600" />
+                                            <span>+91 9873776859</span>
+                                        </motion.div>
+                                    </a>
                                     <motion.div
                                         whileHover={{ scale: 1.02 }}
                                         className="flex items-center space-x-2 text-gray-600"
@@ -205,16 +229,27 @@ const Navbar = () => {
                                         <FaEnvelope className="text-green-600" />
                                         <span>info@dokaniatech.com</span>
                                     </motion.div>
-                                    <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
+                                    {isAuthenticated ? (
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
-                                            onClick={closeMobileMenu}
-                                            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                                            onClick={() => { closeMobileMenu(); logout(); router.push('/'); }}
+                                            className="w-full border text-gray-700 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
                                         >
-                                            Get Quote
+                                            Logout ({user?.name || 'User'})
                                         </motion.button>
-                                    </a>
+                                    ) : (
+                                        <Link href="/login" className='cursor-pointer'>
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onClick={closeMobileMenu}
+                                                className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                                            >
+                                                Login / Register
+                                            </motion.button>
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
