@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -12,16 +13,13 @@ const Footer = () => {
                     <div className="lg:col-span-1">
                         <div className="flex flex-col items-start space-y-4">
                             {/* Logo */}
-                            <div className="flex items-center space-x-3">
-                                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                                    <span className="text-white font-bold text-lg">DTS</span>
-                                </div>
-                                <div>
-                                    <h2 className="text-2xl font-bold text-gray-800">DOKANIA</h2>
-                                    <p className="text-sm text-gray-600 font-medium">TECH SOLUTIONS</p>
-                                    <p className="text-xs text-gray-500">REDEFINING TECHNOLOGY</p>
-                                </div>
-                            </div>
+                            <Image
+                                src='/images/logo1.png'
+                                alt='Logo'
+                                width={250}
+                                height={250}
+                                className="flex items-center space-x-3"
+                            />
                         </div>
                     </div>
 

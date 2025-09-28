@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaPhone, FaEnvelope, FaCheck, FaStar, FaShare, FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { FaArrowLeft, FaPhone, FaEnvelope, FaCheck, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -57,8 +57,8 @@ const ProductDetail = ({ product }) => {
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => setSelectedImage(index)}
                                     className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${selectedImage === index
-                                            ? 'border-green-500 shadow-lg'
-                                            : 'border-gray-200 hover:border-gray-300'
+                                        ? 'border-green-500 shadow-lg'
+                                        : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                 >
                                     <img
@@ -84,15 +84,9 @@ const ProductDetail = ({ product }) => {
                                 {product.name}
                             </h1>
                             <div className="flex items-center space-x-4 mb-4">
-                                <div className="flex items-center">
-                                    {[...Array(5)].map((_, i) => (
-                                        <FaStar key={i} className="text-yellow-400" />
-                                    ))}
-                                    <span className="ml-2 text-sm text-gray-600">(4.8) 24 reviews</span>
-                                </div>
                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${product.inStock
-                                        ? 'bg-green-100 text-green-800'
-                                        : 'bg-red-100 text-red-800'
+                                    ? 'bg-green-100 text-green-800'
+                                    : 'bg-red-100 text-red-800'
                                     }`}>
                                     {product.inStock ? 'In Stock' : 'Out of Stock'}
                                 </span>
@@ -111,53 +105,59 @@ const ProductDetail = ({ product }) => {
                         </div>
 
                         {/* Features */}
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {product.features.map((feature, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        className="flex items-center space-x-3"
-                                    >
-                                        <FaCheck className="text-green-500 flex-shrink-0" />
-                                        <span className="text-gray-700">{feature}</span>
-                                    </motion.div>
-                                ))}
+                        {product.features && product.features.length > 0 && (
+                            <div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {product.features.map((feature, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                                            className="flex items-center space-x-3"
+                                        >
+                                            <FaCheck className="text-green-500 flex-shrink-0" />
+                                            <span className="text-gray-700">{feature}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Specifications */}
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h3>
-                            <div className="bg-gray-50 rounded-lg p-4">
-                                <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {Object.entries(product.specifications).map(([key, value]) => (
-                                        <div key={key} className="flex justify-between">
-                                            <dt className="font-medium text-gray-700">{key}:</dt>
-                                            <dd className="text-gray-600">{value}</dd>
-                                        </div>
-                                    ))}
-                                </dl>
+                        {product.specifications && Object.keys(product.specifications).length > 0 && (
+                            <div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h3>
+                                <div className="bg-gray-50 rounded-lg p-4">
+                                    <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {Object.entries(product.specifications).map(([key, value]) => (
+                                            <div key={key} className="flex justify-between">
+                                                <dt className="font-medium text-gray-700">{key}:</dt>
+                                                <dd className="text-gray-600">{value}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Applications */}
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-3">Applications</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {product.applications.map((application, index) => (
-                                    <span
-                                        key={index}
-                                        className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
-                                    >
-                                        {application}
-                                    </span>
-                                ))}
+                        {product.applications && product.applications.length > 0 && (
+                            <div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-3">Applications</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {product.applications.map((application, index) => (
+                                        <span
+                                            key={index}
+                                            className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                                        >
+                                            {application}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Quantity and Actions */}
                         <div className="space-y-4">
@@ -183,42 +183,18 @@ const ProductDetail = ({ product }) => {
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="flex-1 flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
-                                >
-                                    <FaShoppingCart />
-                                    <span>Request Quote</span>
-                                </motion.button>
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="flex-1 flex items-center justify-center space-x-2 px-6 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
-                                >
-                                    <FaPhone />
-                                    <span>Contact Sales</span>
-                                </motion.button>
+                                <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer" className='flex w-1/2 items-center justify-center'>
+                                    <motion.button
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="flex-1 flex items-center justify-center space-x-2 px-6 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                                    >
+                                        <FaPhone />
+                                        <span>Contact Sales</span>
+                                    </motion.button>
+                                </a>
                             </div>
-
-                            <div className="flex space-x-4">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                                >
-                                    <FaHeart />
-                                    <span>Add to Wishlist</span>
-                                </motion.button>
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                                >
-                                    <FaShare />
-                                    <span>Share</span>
-                                </motion.button>
-                            </div>
+                            {/* Removed Add to Wishlist and Share buttons */}
                         </div>
                     </motion.div>
                 </div>
@@ -235,22 +211,26 @@ const ProductDetail = ({ product }) => {
                         Our team of experts is ready to help you find the perfect solution for your needs. Contact us today for personalized assistance.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
-                        >
-                            <FaPhone className="inline mr-2" />
-                            Call Us: +91 9205960101
-                        </motion.button>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
-                        >
-                            <FaEnvelope className="inline mr-2" />
-                            Email Us
-                        </motion.button>
+                        <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                            >
+                                <FaPhone className="inline mr-2" />
+                                Call Us: +91 9205960101
+                            </motion.button>
+                        </a>
+                        <a href="mailto:info@dokaniatech.com?subject=Request%20Quote&body=Hi%20Team,%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20quote%20for%20your%20products.%0D%0A%0D%0AThanks," target="_blank" rel="noopener noreferrer">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
+                            >
+                                <FaEnvelope className="inline mr-2" />
+                                Email Us
+                            </motion.button>
+                        </a>
                     </div>
                 </motion.div>
             </div>

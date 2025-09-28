@@ -7,6 +7,7 @@ import { FaWhatsapp } from 'react-icons/fa6';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -53,21 +54,14 @@ const Navbar = () => {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
-
                     {/* Logo */}
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                    <Image
+                        src='/images/logo1.png'
+                        alt='Logo'
+                        width={95}
+                        height={95}
                         className="flex items-center space-x-3"
-                    >
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                            <span className="text-white font-bold text-lg lg:text-xl">DTS</span>
-                        </div>
-                        <div>
-                            <h1 className="text-xl lg:text-2xl font-bold text-gray-800">DOKANIA</h1>
-                            <p className="text-xs lg:text-sm text-gray-600 font-medium">TECH SOLUTIONS</p>
-                        </div>
-                    </motion.div>
+                    />
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center space-x-8">
