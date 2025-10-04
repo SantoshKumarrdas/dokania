@@ -167,7 +167,7 @@ const ProductsPage = () => {
                                         />
                                         <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
-                                                {product?.name}
+                                                {product?.category}
                                             </span>
                                         </div>
                                         <div className="absolute top-4 left-4">

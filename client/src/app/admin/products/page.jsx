@@ -11,15 +11,16 @@ export default function AdminProductsPage() {
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
     const [stockFilter, setStockFilter] = useState('all'); // all | in | out
+    const [query, setQuery] = useState('');
 
     const load = async (p = 1) => {
         setLoading(true);
         setError('');
         try {
             const data = await productApi.list({ page: p, limit: 10 });
-            setItems(data.products);
-            setPages(data.pagination.pages);
-            setPage(data.pagination.page);
+            setItems(data.products || []);
+            setPages(data.pagination?.pages || 1);
+            setPage(data.pagination?.page || p);
         } catch (e) {
             setError(e.message || 'Failed to load products');
         } finally {
@@ -54,6 +55,7 @@ export default function AdminProductsPage() {
             <div className="flex items-center justify-between mb-4">
                 <h1 className="text-2xl font-bold">Products</h1>
                 <div className="flex items-center gap-2">
+                    <input placeholder="Search products" className="border p-2 rounded text-sm" onChange={(e) => setQuery(e.target.value)} />
                     <select value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} className="px-3 py-2 border rounded">
                         <option value="all">All</option>
                         <option value="in">In Stock</option>
@@ -62,7 +64,7 @@ export default function AdminProductsPage() {
                     <Link href="/admin/products/create" className="px-3 py-2 bg-green-600 text-white rounded">New Product</Link>
                 </div>
             </div>
-            {loading && <div>Loading…</div>}
+            {loading && <div>Loading...</div>}
             {error && <div className="text-red-600">{error}</div>}
             {!loading && !error && (
                 <div className="overflow-auto border rounded">
@@ -79,6 +81,7 @@ export default function AdminProductsPage() {
                         <tbody>
                             {items
                                 .filter((p) => stockFilter === 'all' ? true : stockFilter === 'in' ? p.inStock : !p.inStock)
+                                .filter(p => !query || p.name.toLowerCase().includes(query.toLowerCase()))
                                 .map((p) => (
                                     <tr key={p._id} className="border-t">
                                         <td className="p-2">{p.name}</td>
@@ -94,7 +97,7 @@ export default function AdminProductsPage() {
                                             <button onClick={() => toggleStock(p)} className="px-2 py-1 border rounded">
                                                 {p.inStock ? 'Mark Out of Stock' : 'Mark In Stock'}
                                             </button>
-                                            <button onClick={() => onDelete(p._id)} className="px-2 py-1 border rounded text-red-600">Delete</button>
+                                            <button onClick={() => { if (confirm('Delete this product?')) onDelete(p._id); }} className="px-2 py-1 border rounded text-red-600">Delete</button>
                                         </td>
                                     </tr>
                                 ))}

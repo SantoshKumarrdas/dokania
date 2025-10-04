@@ -63,34 +63,71 @@ export default function EditProductPage() {
         }
     };
 
-    if (loading) return <div>Loading…</div>;
+    if (loading) return <div>Loading...</div>;
     return (
         <div>
             <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
-            <form onSubmit={onSubmit} className="space-y-3 max-w-2xl">
+            <form onSubmit={onSubmit} className="space-y-4 max-w-3xl">
                 {error && <div className="text-red-600">{error}</div>}
-                <input name="name" value={form.name} onChange={onChange} placeholder="Name" className="w-full border p-2 rounded" required />
-                <input name="slug" value={form.slug} onChange={onChange} placeholder="Slug" className="w-full border p-2 rounded" required />
-                <input name="category" value={form.category} onChange={onChange} placeholder="Category" className="w-full border p-2 rounded" required />
-                <input name="priceLabel" value={form.priceLabel} onChange={onChange} placeholder="Price Label" className="w-full border p-2 rounded" />
-                <textarea name="description" value={form.description} onChange={onChange} placeholder="Short description" className="w-full border p-2 rounded" required />
-                <textarea name="longDescription" value={form.longDescription} onChange={onChange} placeholder="Long description" className="w-full border p-2 rounded" />
-                <select name="inStock" value={form.inStock ? 'true' : 'false'} onChange={(e) => setForm({ ...form, inStock: e.target.value === 'true' })} className="w-full border p-2 rounded">
-                    <option value="true">In Stock</option>
-                    <option value="false">Out of Stock</option>
-                </select>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label className="text-xs text-gray-600">Name</label>
+                        <input name="name" value={form.name} onChange={onChange} placeholder="Name" className="w-full border p-2 rounded mt-1" required />
+                    </div>
+                    <div>
+                        <label className="text-xs text-gray-600">Slug</label>
+                        <input name="slug" value={form.slug} onChange={onChange} placeholder="Slug" className="w-full border p-2 rounded mt-1" required />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label className="text-xs text-gray-600">Category</label>
+                        <input name="category" value={form.category} onChange={onChange} placeholder="Category" className="w-full border p-2 rounded mt-1" required />
+                    </div>
+                    <div>
+                        <label className="text-xs text-gray-600">Price Label</label>
+                        <input name="priceLabel" value={form.priceLabel} onChange={onChange} placeholder="Price Label" className="w-full border p-2 rounded mt-1" />
+                    </div>
+                </div>
+
+                <div>
+                    <label className="text-xs text-gray-600">Short description</label>
+                    <textarea name="description" value={form.description} onChange={onChange} placeholder="Short description" className="w-full border p-2 rounded mt-1" required />
+                </div>
+
+                <div>
+                    <label className="text-xs text-gray-600">Long description</label>
+                    <textarea name="longDescription" value={form.longDescription} onChange={onChange} placeholder="Long description" className="w-full border p-2 rounded mt-1" />
+                </div>
+
+                <div>
+                    <label className="text-xs text-gray-600">Stock status</label>
+                    <select name="inStock" value={form.inStock ? 'true' : 'false'} onChange={(e) => setForm({ ...form, inStock: e.target.value === 'true' })} className="w-full border p-2 rounded mt-1">
+                        <option value="true">In Stock</option>
+                        <option value="false">Out of Stock</option>
+                    </select>
+                </div>
+
                 <div className="space-y-2">
                     <ImageUploader scope="product" onUploaded={(url) => setImageUrls(prev => [...prev, url])} />
                     {imageUrls.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                             {imageUrls.map((u, i) => (
-                                <img key={i} src={u} alt="uploaded" className="w-16 h-16 object-cover rounded" />
+                                <div key={i} className="relative">
+                                    <img src={u} alt="uploaded" className="w-16 h-16 object-cover rounded" />
+                                    <button type="button" onClick={() => setImageUrls(prev => prev.filter((x, idx) => idx !== i))} className="absolute -top-2 -right-2 bg-white rounded-full p-1 text-red-600 border">x</button>
+                                </div>
                             ))}
                         </div>
                     )}
                     <input name="images" value={form.images} onChange={onChange} placeholder="Additional image URLs (comma separated)" className="w-full border p-2 rounded" />
                 </div>
-                <button disabled={saving} className="px-4 py-2 bg-green-600 text-white rounded">{saving ? 'Saving…' : 'Save'}</button>
+
+                <div className="flex items-center gap-3">
+                    <button disabled={saving} className="px-4 py-2 bg-green-600 text-white rounded">{saving ? 'Saving...' : 'Save'}</button>
+                    <button type="button" onClick={() => window.confirm('Discard changes and go back?') && window.history.back()} className="px-4 py-2 border rounded">Cancel</button>
+                </div>
             </form>
         </div>
     );

@@ -7,6 +7,8 @@ export default function AdminContactsPage() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [query, setQuery] = useState('');
+    const [selected, setSelected] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -25,9 +27,16 @@ export default function AdminContactsPage() {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-4">Contact Messages</h1>
-            {loading && <div>Loading…</div>}
+            <div className="flex items-center justify-between mb-4">
+                <h1 className="text-2xl font-bold">Contact Messages</h1>
+                <div>
+                    <input placeholder="Search by name or email" className="border p-2 rounded text-sm" onChange={(e) => setQuery(e.target.value)} />
+                </div>
+            </div>
+
+            {loading && <div>Loading...</div>}
             {error && <div className="text-red-600">{error}</div>}
+
             {!loading && !error && (
                 <div className="overflow-auto border rounded">
                     <table className="min-w-full text-sm">
@@ -41,8 +50,8 @@ export default function AdminContactsPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {items.map((m) => (
-                                <tr key={m._id} className="border-t">
+                            {items.filter(m => !query || `${m.name} ${m.email}`.toLowerCase().includes(query.toLowerCase())).map((m) => (
+                                <tr key={m._id} className="border-t hover:bg-gray-50 cursor-pointer" onClick={() => setSelected(m)}>
                                     <td className="p-2">{m.name}</td>
                                     <td className="p-2">{m.email}</td>
                                     <td className="p-2">{m.subject}</td>
@@ -52,6 +61,21 @@ export default function AdminContactsPage() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            )}
+
+            {selected && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+                    <div className="bg-white rounded-lg p-4 max-w-2xl w-full">
+                        <div className="flex justify-between items-start">
+                            <h3 className="text-lg font-semibold">{selected.subject || 'Message'}</h3>
+                            <button onClick={() => setSelected(null)} className="text-gray-500">Close</button>
+                        </div>
+                        <div className="mt-2 text-sm text-gray-700">
+                            <div><strong>From:</strong> {selected.name} &lt;{selected.email}&gt;</div>
+                            <div className="mt-3 whitespace-pre-wrap">{selected.message}</div>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
