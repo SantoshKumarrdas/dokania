@@ -376,7 +376,7 @@ const ProductsServices = () => {
                         href="/products"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                        className="flex items-center space-x-2 px-6 py-3 bg-[#CD2C58] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                     >
                         <span>View All Products</span>
                         <FaArrowRight />
@@ -385,7 +385,7 @@ const ProductsServices = () => {
                         href="/contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 px-6 py-3 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                        className="flex items-center space-x-2 px-6 py-3 border-2 border-g[#CD2C58] text-[#CD2C58] rounded-lg font-semibold hover:bg-[#CD2C58] hover:text-white transition-all duration-200"
                     >
                         <span>Get Custom Quote</span>
                         <FaArrowRight />

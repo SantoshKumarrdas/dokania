@@ -58,8 +58,8 @@ const Navbar = () => {
                     <Image
                         src='/images/logo1.png'
                         alt='Logo'
-                        width={95}
-                        height={95}
+                        width={80}
+                        height={80}
                         className="flex items-center space-x-3"
                     />
 
@@ -70,7 +70,7 @@ const Navbar = () => {
                                 <motion.a
                                     href={item.href}
                                     whileHover={{ y: -2 }}
-                                    className="flex items-center space-x-1 text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
+                                    className="flex items-center space-x-1 text-[#001524] hover:text-red-600 transition-colors duration-200 font-bold"
                                     onMouseEnter={() => setActiveDropdown(item.dropdown ? item.name : null)}
                                     onMouseLeave={() => setActiveDropdown(null)}
                                 >
@@ -115,37 +115,39 @@ const Navbar = () => {
                     </div>
 
                     {/* Contact Info & CTA */}
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="hidden lg:flex items-center space-x-4 ">
                         <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer">
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
-                                className="flex items-center space-x-1 text-sm text-gray-600"
+                                className="flex items-center space-x-1 bg-[#CD2C58] text-sm text-white px-4 py-2.5 rounded-lg cursor-pointer"
                             >
-                                <FaWhatsapp size={17} className="text-green-600" />
+                                <FaWhatsapp size={17} className="text-white " />
                                 <span>+91 9873776859</span>
                             </motion.div>
                         </a>
                         {isAuthenticated ? (
                             <div className="flex items-center gap-3">
-                                <span className="text-sm text-gray-700">Hi, {user?.name || 'User'}</span>
+                                <span className="text-sm text-[#CD2C58]">Hi, {user?.name || 'User'}</span>
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="border px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
+                                    className="border px-4 py-2 text-white  cursor-pointer bg-[#CD2C58] rounded-lg transition-colors duration-200 font-medium"
                                     onClick={() => { logout(); router.push('/'); }}
                                 >
                                     Logout
                                 </motion.button>
                             </div>
                         ) : (
-                            <Link href="/login" className='cursor-pointer'>
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
-                                >
-                                    Login / Register
-                                </motion.button>
+                            <Link href="/login">
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                                        style={{ backgroundColor: "#CD2C58" }}
+
+                                    >
+                                        Login / Register
+                                    </motion.button>
                             </Link>
                         )}
                     </div>

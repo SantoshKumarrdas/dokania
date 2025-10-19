@@ -310,7 +310,7 @@ const ContactForm = ({ onSuccess }) => {
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                     className={`w-full flex items-center justify-center space-x-2 py-4 rounded-lg font-semibold transition-all duration-200 ${isSubmitting
                         ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-green-600 to-orange-500 text-white hover:shadow-lg'
+                        : 'bg-black cursor-pointer text-white hover:shadow-lg'
                         }`}
                 >
                     {isSubmitting ? (
@@ -335,12 +335,12 @@ const ContactForm = ({ onSuccess }) => {
                     className="bg-green-50 border border-green-200 rounded-lg p-4"
                 >
                     <div className="flex items-center space-x-2">
-                        <FaCheckCircle className="text-green-500" />
-                        <span className="text-green-800 font-medium">
+                        <FaCheckCircle className="text-bkack-500" />
+                        <span className="text-gray-700 font-medium">
                             Thank you! Your message has been sent successfully.
                         </span>
                     </div>
-                    <p className="text-green-700 text-sm mt-1">
+                    <p className="text-gray-700 text-sm mt-1">
                         We'll get back to you within 24 hours.
                     </p>
                 </motion.div>

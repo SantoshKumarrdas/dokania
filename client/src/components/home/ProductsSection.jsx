@@ -57,7 +57,7 @@ const ProductsSection = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                        Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-orange-500">Products</span>
+                        Our <span className="text-transparent bg-clip-text bg-[#E06B80]">Products</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                         Discover our comprehensive range of high-quality products designed to meet the diverse needs of industries across India.
@@ -83,11 +83,11 @@ const ProductsSection = () => {
                             >
                                 {/* Product Image */}
                                 <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-orange-500 rounded-full flex items-center justify-center">
+                                    <div className="w-full   h-full bg-[#CD2C58] rounded-2px flex items-center justify-center">
                                         <span className="text-white font-bold text-xl">DTS</span>
                                     </div>
                                     <div className="absolute top-4 right-4">
-                                        <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                                        <span className="px-3 py-1 bg-white text-black text-xs font-medium rounded-full">
                                             {product?.name}
                                         </span>
                                     </div>
@@ -117,7 +117,7 @@ const ProductsSection = () => {
                                         <motion.button
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-full flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+                                            className="w-full flex items-center cursor-pointer justify-center space-x-2 py-3 bg-black text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
                                         >
                                             <span>Learn More</span>
                                             <FaArrowRight size={14} />
@@ -141,7 +141,7 @@ const ProductsSection = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                            className="px-8 py-4 border-2 border-black text-black rounded-lg font-semibold hover:bg-[#CD2C58] hover:border-[#CD2C58] cursor-pointer hover:text-white transition-all duration-500"
                         >
                             View All Products
                         </motion.button>

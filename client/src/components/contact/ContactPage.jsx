@@ -86,10 +86,10 @@ const ContactPage = () => {
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#E06B80] mb-4">
                             Get in Touch
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        <p className="text-xl text-[#3a010b] max-w-2xl mx-auto">
                             Choose your preferred way to reach us. Our team is ready to assist you with any questions or requirements.
                         </p>
                     </motion.div>
@@ -250,7 +250,7 @@ const ContactPage = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 bg-gradient-to-r from-green-600 to-orange-500">
+            <section className="py-16 bg-gray-900 ">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -270,7 +270,7 @@ const ContactPage = () => {
                                 href="tel:+919205960101"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                className="px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                             >
                                 <FaPhone className="inline mr-2" />
                                 Call Now: +91 9205960101
@@ -279,7 +279,7 @@ const ContactPage = () => {
                                 href="mailto:info@dokaniatech.com"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
+                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
                             >
                                 <FaEnvelope className="inline mr-2" />
                                 Send Email

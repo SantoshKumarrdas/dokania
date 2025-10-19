@@ -59,10 +59,10 @@ const AboutPage = () => {
                         transition={{ duration: 0.8 }}
                         className="text-center text-black"
                     >
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                        <h1 className="text-4xl text-[#E06B80] md:text-5xl font-bold mb-6">
                             About Dokania Tech Solutions
                         </h1>
-                        <p className="text-xl md:text-2xl text-black/90 max-w-3xl mx-auto">
+                        <p className="text-xl md:text-2xl text-[#3d000b] max-w-3xl mx-auto">
                             Leading pan-India importer and distributor of DGTW Hydrox Brazing Solutions, and trusted manufacturer of EPS machinery spare parts.
                         </p>
                     </motion.div>
@@ -82,8 +82,8 @@ const AboutPage = () => {
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setActiveSection(section.id)}
                                 className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeSection === section.id
-                                    ? 'bg-gradient-to-r from-green-600 to-orange-500 text-white shadow-lg'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    ? 'bg-[#CD2C58] text-white shadow-lg cursor-pointer'
+                                    : 'bg-black text-white hover:bg-gray-800 cursor-pointer'
                                     }`}
                             >
                                 <section.icon size={16} />
@@ -106,7 +106,7 @@ const AboutPage = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 bg-gradient-to-r from-green-600 to-orange-500">
+            <section className="py-16 bg-gray-900 ">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -126,7 +126,7 @@ const AboutPage = () => {
                                 href="/contact"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                             >
                                 Get in Touch
                             </motion.a>
@@ -134,7 +134,7 @@ const AboutPage = () => {
                                 href="/products"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
+                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-200"
                             >
                                 View Our Products
                             </motion.a>

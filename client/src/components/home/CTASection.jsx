@@ -115,8 +115,8 @@ const CTASection = () => {
                                     whileHover={{ x: 10 }}
                                     className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-200"
                                 >
-                                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <contact.icon className="text-white text-xl" />
+                                    <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <contact.icon className="text-black text-xl" />
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-white">{contact.title}</h4>
@@ -132,24 +132,24 @@ const CTASection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                             viewport={{ once: true }}
-                            className="bg-gradient-to-r from-green-600 to-orange-500 rounded-xl p-6"
+                            className="bg-white text-black rounded-xl p-6"
                         >
                             <h4 className="text-xl font-bold mb-3">Why Choose Us?</h4>
-                            <ul className="space-y-2 text-white/90">
+                            <ul className="space-y-2 text-black">
                                 <li className="flex items-center space-x-2">
-                                    <FaCheckCircle className="text-white" />
+                                    <FaCheckCircle className="text-black" />
                                     <span>15+ Years of Experience</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
-                                    <FaCheckCircle className="text-white" />
+                                    <FaCheckCircle className="text-black" />
                                     <span>500+ Happy Clients</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
-                                    <FaCheckCircle className="text-white" />
+                                    <FaCheckCircle className="text-black" />
                                     <span>99% Customer Satisfaction</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
-                                    <FaCheckCircle className="text-white" />
+                                    <FaCheckCircle className="text-black" />
                                     <span>Quality Guaranteed</span>
                                 </li>
                             </ul>
@@ -194,7 +194,7 @@ const CTASection = () => {
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2  focus:ring-white focus:border-transparent"
                                             placeholder="Your full name"
                                         />
                                     </motion.div>
@@ -214,7 +214,7 @@ const CTASection = () => {
                                             value={formData.email}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                                             placeholder="your@email.com"
                                         />
                                     </motion.div>
@@ -235,7 +235,7 @@ const CTASection = () => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                                             placeholder="+91 1234567890"
                                         />
                                     </motion.div>
@@ -254,7 +254,7 @@ const CTASection = () => {
                                             name="company"
                                             value={formData.company}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                                             placeholder="Your company name"
                                         />
                                     </motion.div>
@@ -273,7 +273,7 @@ const CTASection = () => {
                                         name="industry"
                                         value={formData.industry}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                                     >
                                         <option value="">Select your industry</option>
                                         {industries.map((industry, index) => (
@@ -299,7 +299,7 @@ const CTASection = () => {
                                         onChange={handleInputChange}
                                         required
                                         rows={4}
-                                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-none"
                                         placeholder="Tell us about your requirements..."
                                     />
                                 </motion.div>
@@ -312,7 +312,7 @@ const CTASection = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.7 }}
                                     viewport={{ once: true }}
-                                    className="w-full flex items-center justify-center space-x-2 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                    className="w-full flex items-center justify-center space-x-2 py-4 bg-white to-orange-500 text-black cursor-pointer  rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                                 >
                                     <FaPaperPlane />
                                     <span>Send Message</span>

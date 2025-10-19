@@ -14,41 +14,41 @@ const HeroSection = () => {
             id: 1,
             title: 'DGTW Hydrox Brazing Solutions',
             description: 'High-quality brazing solutions for industrial applications',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            image: 'https://images.pexels.com/photos/5846132/pexels-photo-5846132.jpeg',
             fallbackGradient: 'from-blue-500 to-cyan-500',
-            overlay: 'rgba(59, 130, 246, 0.7)' // Blue overlay
+            // overlay: 'rgba(59, 130, 246, 0.7)' // Blue overlay
         },
         {
             id: 2,
             title: 'EPS Machinery Parts',
             description: 'Precision-engineered spare parts for EPS machinery',
-            image: 'https://images.unsplash.com/photo-1565819443351-4b4b4b4b4b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            image: 'https://images.pexels.com/photos/15018559/pexels-photo-15018559.jpeg',
             fallbackGradient: 'from-green-500 to-emerald-500',
-            overlay: 'rgba(34, 197, 94, 0.7)' // Green overlay
+            // overlay: 'rgba(34, 197, 94, 0.7)' // Green overlay
         },
         {
             id: 3,
             title: 'HVAC Solutions',
             description: 'Complete HVAC system components and solutions',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            image: 'https://images.pexels.com/photos/28929513/pexels-photo-28929513.jpeg',
             fallbackGradient: 'from-orange-500 to-red-500',
-            overlay: 'rgba(249, 115, 22, 0.7)' // Orange overlay
+           
         },
         {
             id: 4,
             title: 'Automobile Parts',
             description: 'Reliable automotive components and spare parts',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            image: 'https://images.pexels.com/photos/8865187/pexels-photo-8865187.jpeg',
             fallbackGradient: 'from-purple-500 to-pink-500',
-            overlay: 'rgba(168, 85, 247, 0.7)' // Purple overlay
+            // overlay: 'rgba(168, 85, 247, 0.7)' // Purple overlay
         },
         {
             id: 5,
             title: 'Industrial Couplings',
             description: 'Heavy-duty couplings for industrial machinery',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            image: 'https://images.pexels.com/photos/5846116/pexels-photo-5846116.jpeg',
             fallbackGradient: 'from-indigo-500 to-purple-500',
-            overlay: 'rgba(99, 102, 241, 0.7)' // Indigo overlay
+           
         }
     ];
 
@@ -151,17 +151,8 @@ const HeroSection = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="max-w-2xl space-y-8"
                     >
-                        {/* Company Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium"
-                        >
-                            <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-                            Leading Technology Solutions Provider
-                        </motion.div>
-
+                    
+                      
                         {/* Main Heading */}
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
@@ -169,9 +160,9 @@ const HeroSection = () => {
                             transition={{ duration: 0.8, delay: 0.3 }}
                             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
                         >
-                            Redefining
+                            Dokania
                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-yellow-200">
-                                Technology
+                                Tech
                             </span>
                             Solutions
                         </motion.h1>
@@ -197,7 +188,7 @@ const HeroSection = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm md:text-base"
+                                    className="px-6 py-3  cursor-pointer bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm md:text-base"
                                 >
                                     Explore Products
                                 </motion.button>
@@ -206,7 +197,7 @@ const HeroSection = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200 backdrop-blur-sm text-sm md:text-base"
+                                    className="px-6 py-2.5 cursor-pointer border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200 backdrop-blur-sm text-sm md:text-base"
                                 >
                                     Get Quote
                                 </motion.button>

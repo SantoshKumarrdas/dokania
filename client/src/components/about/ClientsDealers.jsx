@@ -151,7 +151,7 @@ const ClientsDealers = () => {
                         viewport={{ once: true }}
                         className="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100"
                     >
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
                             <stat.icon className="text-white text-xl" />
                         </div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-1">
@@ -166,16 +166,16 @@ const ClientsDealers = () => {
 
             {/* Tab Navigation */}
             <div className="flex justify-center mb-8">
-                <div className="bg-gray-100 rounded-lg p-1">
+                <div className="bg-[#016B61] rounded-lg p-2">
                     {tabs.map((tab) => (
                         <motion.button
                             key={tab.id}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
-                                    ? 'bg-white text-green-600 shadow-lg'
-                                    : 'text-gray-600 hover:text-gray-900'
+                            className={`flex items-center  px-16 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
+                                    ? 'bg-[#CD2C58]  text-white cursor-pointer shadow-lg'
+                                    : 'text-white hover:text-white cursor-pointer'
                                 }`}
                         >
                             <tab.icon size={16} />

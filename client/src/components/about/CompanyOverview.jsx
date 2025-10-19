@@ -64,7 +64,7 @@ const CompanyOverview = () => {
                 >
                     <div className="bg-white rounded-2xl shadow-xl p-8">
                         <div className="flex items-center space-x-3 mb-6">
-                            <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-orange-500 rounded-full flex items-center justify-center">
+                            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
                                 <FaBuilding className="text-white text-xl" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900">Who We Are</h3>
@@ -215,7 +215,7 @@ const CompanyOverview = () => {
                         href="/products"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                        className="flex items-center space-x-2 px-6 py-3 bg-[#CD2C58] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                     >
                         <span>Explore Our Products</span>
                         <FaArrowRight />
@@ -224,7 +224,7 @@ const CompanyOverview = () => {
                         href="/contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 px-6 py-3 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                        className="flex items-center space-x-2 px-6 py-3 border-2 border-[#CD2C58] text-[#CD2C58] rounded-lg font-semibold hover:bg-[#CD2C58] hover:text-white transition-all duration-200"
                     >
                         <span>Get in Touch</span>
                         <FaArrowRight />

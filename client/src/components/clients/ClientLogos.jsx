@@ -11,11 +11,11 @@ const ClientCard = React.memo(function ClientCard({ client }) {
             href={client.website || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-white rounded-xl shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-1 p-4 border border-gray-100"
+            className="block bg-white rounded-xl shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-1 p-10 border border-gray-100"
             aria-label={`Visit ${client.name} website`}
         >
             <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-3 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                <div className="w-40 h-20 mb-3 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img src={client.logoUrl} alt={client.name} loading="lazy" className="w-full h-full object-contain" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 truncate w-36">{client.name}</h3>
@@ -100,5 +100,5 @@ const ClientLogos = () => {
         </div>
     );
 };
-
+    
 export default ClientLogos;

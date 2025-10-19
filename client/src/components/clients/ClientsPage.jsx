@@ -15,10 +15,10 @@ const ClientsPage = () => {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12"
                     >
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        <h1 className="text-4xl md:text-5xl font-bold text-[#E06B80] mb-4">
                             Our Clients
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-lg md:text-xl text-[#3d000b] max-w-3xl mx-auto">
                             Brands that trust us. Explore a selection of our valued clients
                             across industries.
                         </p>

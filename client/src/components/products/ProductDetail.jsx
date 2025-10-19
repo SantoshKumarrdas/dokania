@@ -187,7 +187,7 @@ const ProductDetail = ({ product }) => {
                                     <motion.button
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="flex-1 flex items-center justify-center space-x-2 px-6 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-200"
+                                        className="flex-1 flex items-center justify-center space-x-2 px-6 py-4 border-2 border-[#E06B80] text-[#E06B80] rounded-lg font-semibold hover:bg-[#E06B80] cursor-pointer hover:text-white transition-all duration-200"
                                     >
                                         <FaPhone />
                                         <span>Contact Sales</span>
@@ -204,7 +204,7 @@ const ProductDetail = ({ product }) => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="mt-16 bg-gradient-to-r from-green-600 to-orange-500 rounded-2xl p-8 text-white text-center"
+                    className="mt-16  bg-gray-900  rounded-2xl p-8 text-white text-center"
                 >
                     <h2 className="text-2xl font-bold mb-4">Need More Information?</h2>
                     <p className="text-white/90 mb-6 max-w-2xl mx-auto">
@@ -215,7 +215,7 @@ const ProductDetail = ({ product }) => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                className="px-8 py-4 cursor-pointer bg-white text-green-600 rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                             >
                                 <FaPhone className="inline mr-2" />
                                 Call Us: +91 9205960101
@@ -225,7 +225,7 @@ const ProductDetail = ({ product }) => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
+                                className="px-8 py-3.5 border-2 cursor-pointer border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-200"
                             >
                                 <FaEnvelope className="inline mr-2" />
                                 Email Us

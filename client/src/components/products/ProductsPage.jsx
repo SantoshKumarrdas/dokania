@@ -72,10 +72,10 @@ const ProductsPage = () => {
                         transition={{ duration: 0.8 }}
                         className="text-center text-black"
                     >
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-[#CD2C58] bg-clip-text text-transparent">
                             Our Products
                         </h1>
-                        <p className="text-xl md:text-2xl text-black/90 max-w-3xl mx-auto">
+                        <p className="text-xl md:text-2xl text-[#3d000b] max-w-3xl mx-auto">
                             Discover our comprehensive range of high-quality products designed to meet the diverse needs of industries across India.
                         </p>
                     </motion.div>
@@ -84,10 +84,12 @@ const ProductsPage = () => {
 
             {/* Filters and Search */}
             <section className="py-8 bg-white ">
+                
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+                        
 
-
+ 
 
                         {/* Search Bar */}
                         <div className="relative flex-1 min-w-[250px]">
@@ -97,7 +99,7 @@ const ProductsPage = () => {
                                 placeholder="Search products..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:border-transparent"
                             />
                         </div>
 
@@ -105,7 +107,7 @@ const ProductsPage = () => {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:border-transparent"
                         >
                             <option value="name">Sort by Name</option>
                             <option value="category">Sort by Category</option>
@@ -115,7 +117,7 @@ const ProductsPage = () => {
                         <select
                             value={stockFilter}
                             onChange={(e) => setStockFilter(e.target.value)}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:border-transparent"
                         >
                             <option value="all">All Stock</option>
                             <option value="in">In Stock</option>
@@ -159,11 +161,11 @@ const ProductsPage = () => {
                                     className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
                                 >
                                     {/* Product Image */}
-                                    <div className="relative h-48 bg-gray-200">
+                                    <div className="relative h-50 bg-gray-200">
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-contain"
                                         />
                                         <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
@@ -190,7 +192,7 @@ const ProductsPage = () => {
                                         <div className="space-y-2 mb-6">
                                             {product.features.map((feature, featureIndex) => (
                                                 <div key={featureIndex} className="flex items-center space-x-2">
-                                                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                                                    <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
                                                     <span className="text-sm text-gray-600">{feature}</span>
                                                 </div>
                                             ))}
@@ -198,14 +200,14 @@ const ProductsPage = () => {
 
                                         {/* Price and CTA */}
                                         <div className="flex items-center justify-between">
-                                            <span className="text-lg font-semibold text-gray-900">
+                                            <span className="text-lg font-semibold text-gray-700">
                                                 {product.price}
                                             </span>
                                             <Link href={`/products/${product.slug}`}>
                                                 <motion.button
                                                     whileHover={{ scale: 1.05 }}
                                                     whileTap={{ scale: 0.95 }}
-                                                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+                                                    className="flex items-center cursor-pointer space-x-2 px-4 py-2 bg-[#7a0021] text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
                                                 >
                                                     <span>View Details</span>
                                                     <FaArrowRight size={14} />
@@ -235,7 +237,7 @@ const ProductsPage = () => {
 
             {/* CTA Section */}
             <section className="py-16 bg-gray-900 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold mb-4">
                         Can't Find What You're Looking For?
                     </h2>
@@ -247,7 +249,7 @@ const ProductsPage = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-gradient-to-r from-green-600 to-orange-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                className="px-8 py-4 border-2 cursor-pointer border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
                             >
                                 Contact Us
                             </motion.button>
@@ -256,7 +258,7 @@ const ProductsPage = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
+                                className="px-8 py-4 border-2 cursor-pointer border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
                             >
                                 Request Quote
                             </motion.button>
