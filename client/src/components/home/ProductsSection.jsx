@@ -82,13 +82,23 @@ const ProductsSection = () => {
                                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
                             >
                                 {/* Product Image */}
-                                <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                                    <div className="w-full   h-full bg-[#CD2C58] rounded-2px flex items-center justify-center">
-                                        <span className="text-white font-bold text-xl">DTS</span>
-                                    </div>
+                                <div className="relative h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                                    <img
+                                        src={product.image || '/images/placeholder.html'}
+                                        alt={product.name}
+                                        onError={(e) => { e.currentTarget.src = '/images/placeholder.html'; }}
+                                        className="w-full h-full object-cover"
+                                    />
+
                                     <div className="absolute top-4 right-4">
                                         <span className="px-3 py-1 bg-white text-black text-xs font-medium rounded-full">
-                                            {product?.name}
+                                            {product?.category}
+                                        </span>
+                                    </div>
+
+                                    <div className="absolute top-4 left-4">
+                                        <span className={`px-3 py-1 text-white text-xs font-medium rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}>
+                                            {product.inStock ? 'In Stock' : 'Out of Stock'}
                                         </span>
                                     </div>
                                 </div>

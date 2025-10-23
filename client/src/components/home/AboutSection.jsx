@@ -186,11 +186,12 @@ const AboutSection = () => {
                     viewport={{ once: true }}
                     className="text-center mt-16"
                 >
-                    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    <div className="bg-gray-900 rounded-2xl w-full shadow-xl p-8 mx-auto
+">
+                        <h3 className="text-2xl font-bold text-white mb-4">
                             Ready to Experience Excellence?
                         </h3>
-                        <p className="text-gray-600 mb-6">
+                        <p className="text-gray-300 mb-6">
                             Join hundreds of satisfied customers who trust Dokania Tech Solutions for their industrial needs.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -198,16 +199,16 @@ const AboutSection = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-black cursor-pointer text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
+                                className="px-8 py-3.5 bg-white cursor-pointer border-2 border-[#CD2C58] text-[#CD2C58] rounded-lg font-semibold hover:shadow-lg transition-all duration-200"
                             >
-                                Get Started Today
+                                Contact Us
                             </motion.button>
                             </a>
                             <a href="/about">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                  className="px-12 py-3.5 border-2 border-black text-black rounded-lg font-semibold hover:bg-[#CD2C58] hover:border-[#CD2C58]  bg-[#CD2C58]  cursor-pointer hover:text-white transition-all duration-500"
+                                  className="px-12 py-3.5 border-2 border-white text-white rounded-lg font-semibold hover:bg-[#CD2C58] hover:border-[#CD2C58]  bg-[#CD2C58]  cursor-pointer hover:text-white transition-all duration-500"
                         >
                             
                                 Learn More
@@ -215,8 +216,7 @@ const AboutSection = () => {
                             </a>
                         </div>
                     </div>
-                </motion.div>
-            </div>
+                </motion.div>            </div>
         </section>
     );
 };
