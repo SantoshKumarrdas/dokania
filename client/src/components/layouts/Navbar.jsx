@@ -116,13 +116,13 @@ const Navbar = () => {
 
                     {/* Contact Info & CTA */}
                     <div className="hidden lg:flex items-center space-x-4 ">
-                        <a href="https://api.whatsapp.com/send?phone=9873776859" target="_blank" rel="noopener noreferrer">
+                        <a href="https://api.whatsapp.com/send?phone=8130100529" target="_blank" rel="noopener noreferrer">
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 className="flex items-center space-x-1 bg-[#CD2C58] text-sm text-white px-4 py-2.5 rounded-lg cursor-pointer"
                             >
                                 <FaWhatsapp size={17} className="text-white " />
-                                <span>+91 9873776859</span>
+                                <span> +91 8130100529</span>
                             </motion.div>
                         </a>
                         {isAuthenticated ? (

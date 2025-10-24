@@ -24,8 +24,8 @@ const ContactPage = () => {
             icon: FaPhone,
             title: 'Phone',
             details: [
-                '+91 9205960101',
-                '+91 9876543210',
+                '+91 9205553476',
+                '+91 8130100529',
                 'Mon-Fri: 9AM-6PM'
             ],
             color: 'from-green-500 to-emerald-500'
@@ -56,19 +56,19 @@ const ContactPage = () => {
         {
             name: 'Sales Department',
             email: 'sales@dokaniatech.com',
-            phone: '+91 9205960101',
+            phone: '+91 9205553476',
             description: 'For product inquiries, quotes, and sales support'
         },
         {
             name: 'Technical Support',
             email: 'support@dokaniatech.com',
-            phone: '+91 9876543210',
+            phone: '+91 9205960101',
             description: 'For technical assistance and product support'
         },
         {
             name: 'General Inquiries',
             email: 'info@dokaniatech.com',
-            phone: '+91 9205960101',
+            phone: '+91 9205553476 ',
             description: 'For general information and business inquiries'
         }
     ];
@@ -159,12 +159,13 @@ const ContactPage = () => {
                                 </h3>
                                 <div className="space-y-4">
                                     {[
-                                        '15+ Years of Industry Experience',
+                                        
                                         '500+ Satisfied Clients',
-                                        '99% Customer Satisfaction Rate',
-                                        'ISO 9001 Certified Quality',
+                                        '100% Customer Satisfaction Rate',                                       
                                         '24/7 Technical Support',
-                                        'Custom Solutions Available'
+                                        'Quality Assurance on All Products',
+                                        'Experienced and Knowledgeable Team'
+                                       
                                     ].map((item, index) => (
                                         <motion.div
                                             key={index}

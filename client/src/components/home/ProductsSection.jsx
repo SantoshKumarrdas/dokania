@@ -96,11 +96,11 @@ const ProductsSection = () => {
                                         </span>
                                     </div>
 
-                                    <div className="absolute top-4 left-4">
+                                    {/* <div className="absolute top-4 left-4">
                                         <span className={`px-3 py-1 text-white text-xs font-medium rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}>
                                             {product.inStock ? 'In Stock' : 'Out of Stock'}
                                         </span>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 {/* Product Content */}

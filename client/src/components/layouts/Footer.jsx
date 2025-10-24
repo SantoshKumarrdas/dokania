@@ -65,7 +65,7 @@ const Footer = () => {
                                     href="tel:+919205960101"
                                     className="text-gray-700 text-sm hover:text-green-600 transition-colors duration-200"
                                 >
-                                    Call Us: +91 9205960101
+                                    Call Us: +91 9205553476
                                 </a>
                             </div>
 

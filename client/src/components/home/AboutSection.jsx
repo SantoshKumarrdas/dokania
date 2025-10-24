@@ -72,18 +72,11 @@ const AboutSection = () => {
                                 viewport={{ once: true }}
                                 className="text-lg text-gray-700 leading-relaxed"
                             >
-                                New Machine Co., Ltd. is a leading manufacturer that specialized in "Couplings" and "Pipe Clamps". We are confident that our products satisfy you with a comfortable and reliable response, smooth detachment and operation for all users at all time.
+                                Dokania Tech Solutions imports DGTW Hydrox Brazing Solutions and manufactures EPS machinery spare parts, serving HVAC, EPS, and automobile sectors across India with reliable, high-quality products and services.
+                               
                             </motion.p>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.3 }}
-                                viewport={{ once: true }}
-                                className="text-lg text-gray-700 leading-relaxed"
-                            >
-                                Dokania Tech Solutions imports DGTW Hydrox Brazing Solutions and manufactures EPS machinery spare parts, serving HVAC, EPS, and automobile sectors across India with reliable, high-quality products and services.
-                            </motion.p>
+                            
                         </div>
 
                         {/* Values */}

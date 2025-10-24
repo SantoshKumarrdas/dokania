@@ -9,9 +9,9 @@ const MapComponent = () => {
 
     // Company location coordinates (Noida, Sector 10)
     const companyLocation = {
-        lat: 28.5355,
-        lng: 77.3910,
-        address: 'C229 SECTOR 10, NOIDA, UTTAR PRADESH - 201301',
+        lat: 28.5897,
+        lng: 77.3312,
+        address: 'C - 229 SECTOR 10, NOIDA, UTTAR PRADESH - 201301',
         phone: '+91 9205960101',
         email: 'info@dokaniatech.com'
     };

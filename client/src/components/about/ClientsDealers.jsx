@@ -81,34 +81,31 @@ const ClientsDealers = () => {
         {
             name: 'SD Enterprises',
             industry: 'HVAC',
-            location: 'Mumbai, Maharashtra',
-            contact: '+91 9876543210',
-            email: 'info@sdenterprises.com',
+            location: 'Nangloi,Delhi',
+            
             icon: FaThermometerHalf,
             color: 'from-blue-500 to-cyan-500'
         },
         {
             name: 'Shiv Shakti Engineering Works',
             industry: 'EPS',
-            location: 'Pune, Maharashtra',
-            contact: '+91 9876543211',
-            email: 'info@shivshaktieng.com',
+            location: 'Noida,Utter Pradesh',
+           
             icon: FaCog,
             color: 'from-green-500 to-emerald-500'
         },
         {
             name: 'Ekta Enterprises',
             industry: 'Automobile Sector',
-            location: 'Chennai, Tamil Nadu',
-            contact: '+91 9876543212',
-            email: 'info@ektaenterprises.com',
+            location: 'Gurugram, Haryana',
+            
             icon: FaCar,
             color: 'from-orange-500 to-red-500'
         },
         {
             name: 'L-tech Automation System',
             industry: 'Automobile Sector',
-            location: 'Bangalore, Karnataka',
+            location: 'Laxminagar, New Delhi',
             contact: '+91 9876543213',
             email: 'info@ltechautomation.com',
             icon: FaCar,
@@ -292,14 +289,7 @@ const ClientsDealers = () => {
                                                 <FaMapMarkerAlt size={14} />
                                                 <span className="text-sm">{dealer.location}</span>
                                             </div>
-                                            <div className="flex items-center space-x-2 text-gray-600">
-                                                <FaPhone size={14} />
-                                                <span className="text-sm">{dealer.contact}</span>
-                                            </div>
-                                            <div className="flex items-center space-x-2 text-gray-600">
-                                                <FaEnvelope size={14} />
-                                                <span className="text-sm">{dealer.email}</span>
-                                            </div>
+                                         
                                         </div>
                                     </div>
                                 </div>

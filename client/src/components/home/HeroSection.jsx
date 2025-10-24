@@ -14,7 +14,7 @@ const HeroSection = () => {
             id: 1,
             title: 'DGTW Hydrox Brazing Solutions',
             description: 'High-quality brazing solutions for industrial applications',
-            image: 'https://images.pexels.com/photos/5846132/pexels-photo-5846132.jpeg',
+            image: 'http://dgtw.co.kr/eng/images/product/purpose01.jpg',
             fallbackGradient: 'from-blue-500 to-cyan-500',
             // overlay: 'rgba(59, 130, 246, 0.7)' // Blue overlay
         },
@@ -22,7 +22,7 @@ const HeroSection = () => {
             id: 2,
             title: 'EPS Machinery Parts',
             description: 'Precision-engineered spare parts for EPS machinery',
-            image: 'https://images.pexels.com/photos/15018559/pexels-photo-15018559.jpeg',
+            image: 'http://dgtw.co.kr/eng/images/product/line_auto01.jpg',
             fallbackGradient: 'from-green-500 to-emerald-500',
             // overlay: 'rgba(34, 197, 94, 0.7)' // Green overlay
         },
@@ -30,7 +30,7 @@ const HeroSection = () => {
             id: 3,
             title: 'HVAC Solutions',
             description: 'Complete HVAC system components and solutions',
-            image: 'https://images.pexels.com/photos/28929513/pexels-photo-28929513.jpeg',
+            image: 'http://dgtw.co.kr/eng/images/product/pipe08.jpg',
             fallbackGradient: 'from-orange-500 to-red-500',
            
         },
@@ -38,7 +38,7 @@ const HeroSection = () => {
             id: 4,
             title: 'Automobile Parts',
             description: 'Reliable automotive components and spare parts',
-            image: 'https://images.pexels.com/photos/8865187/pexels-photo-8865187.jpeg',
+            image: 'https://images.pexels.com/photos/30335373/pexels-photo-30335373.jpeg',
             fallbackGradient: 'from-purple-500 to-pink-500',
             // overlay: 'rgba(168, 85, 247, 0.7)' // Purple overlay
         },
@@ -46,7 +46,7 @@ const HeroSection = () => {
             id: 5,
             title: 'Industrial Couplings',
             description: 'Heavy-duty couplings for industrial machinery',
-            image: 'https://images.pexels.com/photos/5846116/pexels-photo-5846116.jpeg',
+            image: 'https://images.pexels.com/photos/15018559/pexels-photo-15018559.jpeg',
             fallbackGradient: 'from-indigo-500 to-purple-500',
            
         }
